@@ -1,0 +1,5 @@
+{
+ "name": "mrmilu/mrmilu_mail",
+ "description": "Integration with sendgrid to send mails",
+ "type": "drupal-mrmilu-module"
+}
