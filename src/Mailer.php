@@ -9,6 +9,7 @@ use Swift_SmtpTransport;
 
 class Mailer {
 
+  public $fromName;
   public $fromEmail;
   public $toEmail;
   public $mailer;
@@ -23,12 +24,13 @@ class Mailer {
 
     $this->mailer = new Swift_Mailer($transport);
     $this->fromEmail = Settings::get('smtp_from');
+    $this->fromName = Settings::get('smtp_name');
     $this->toEmail = Settings::get('smtp_to');
   }
 
   public function createMessage($subject, $body) {
     return (new Swift_Message($subject))
-      ->setFrom($this->fromEmail)
+      ->setFrom([$this->fromEmail => $this->fromName])
       ->setTo($this->toEmail)
       ->setBody($body, 'text/html');
   }
