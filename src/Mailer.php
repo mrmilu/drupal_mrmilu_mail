@@ -28,15 +28,16 @@ class Mailer {
     $this->toEmail = Settings::get('smtp_to');
   }
 
-  public function createMessage($subject, $body) {
+  public function createMessage($subject, $body, $to = NULL) {
+    $to = $to ? $to : $this->toEmail;
     return (new Swift_Message($subject))
       ->setFrom([$this->fromEmail => $this->fromName])
-      ->setTo($this->toEmail)
+      ->setTo($to)
       ->setBody($body, 'text/html');
   }
 
-  public function sendMail($subject, $body) {
-    $message = $this->createMessage($subject, $body);
+  public function sendMail($subject, $body, $to = NULL) {
+    $message = $this->createMessage($subject, $body, $to);
     return $this->send($message);
   }
 
