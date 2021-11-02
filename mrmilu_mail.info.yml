@@ -2,5 +2,5 @@ name: Mr. Milu Mail
 type: module
 description: Integration with sendgrid to send mails
 package: Mr. Milú
-core: 8.x
-version: 1.0.2
+core_version_requirement: ^8.8.0 || ^9
+version: 2.0.0
